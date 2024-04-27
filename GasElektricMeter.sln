@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasElektricMeter", "GasElektricMeter\GasElektricMeter.csproj", "{DD98ABD2-8FCE-492B-9139-F3C952896F20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GasElektricMeter.Test", "GasElektricMeter.Test\GasElektricMeter.Test.csproj", "{692C668C-F52B-474C-94CD-F64B1EC62524}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD98ABD2-8FCE-492B-9139-F3C952896F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD98ABD2-8FCE-492B-9139-F3C952896F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD98ABD2-8FCE-492B-9139-F3C952896F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD98ABD2-8FCE-492B-9139-F3C952896F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692C668C-F52B-474C-94CD-F64B1EC62524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692C668C-F52B-474C-94CD-F64B1EC62524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692C668C-F52B-474C-94CD-F64B1EC62524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692C668C-F52B-474C-94CD-F64B1EC62524}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {441CAD94-0A50-4470-BD9D-30DEC9C80913}
+	EndGlobalSection
+EndGlobal
