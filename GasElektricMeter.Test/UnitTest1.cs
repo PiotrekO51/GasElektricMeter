@@ -6,15 +6,14 @@ namespace GasElektricMeter.Test
         public void StatisticTest()
         {
             var gasmeter = new GasMeter("Licznik", "Pr¹d");
-
             gasmeter.AddGrade(35);
-            gasmeter.AddGrade(45);
-            gasmeter.AddGrade(60);
-            gasmeter.AddGrade(80);
+            gasmeter.AddGrade(50);
+            gasmeter.AddGrade(70);
+            gasmeter.AddGrade(100);
 
-            var statistics = gasmeter.CountStatistics();
+            var statistics = gasmeter.GetStatisticsWithForeEach2();
 
-            Assert.AreEqual(20, statistics.Max);
+            Assert.AreEqual(30, statistics.Max);
 
         }
 
@@ -22,15 +21,14 @@ namespace GasElektricMeter.Test
         public void StatisticTest2()
         {
             var gasmeter = new GasMeter("Licznik", "Pr¹d");
-
             gasmeter.AddGrade(35);
-            gasmeter.AddGrade(45);
-            gasmeter.AddGrade(60);
-            gasmeter.AddGrade(80);
+            gasmeter.AddGrade(50);
+            gasmeter.AddGrade(70);
+            gasmeter.AddGrade(100);
 
-            var statistics = gasmeter.CountStatistics();
+            var statistics = gasmeter.GetStatisticsWithForeEach2();
 
-            Assert.AreEqual(10, statistics.Min);
+            Assert.AreEqual(15, statistics.Min);
 
         }
 
@@ -38,14 +36,14 @@ namespace GasElektricMeter.Test
         public void StatisticTest3()
         {
             var gasmeter = new GasMeter("Licznik", "Pr¹d");
-
             gasmeter.AddGrade(35);
-            gasmeter.AddGrade(45);
-            gasmeter.AddGrade(60);
-            gasmeter.AddGrade(80);
+            gasmeter.AddGrade(50);
+            gasmeter.AddGrade(70);
+            gasmeter.AddGrade(100);
 
-            var statistics = gasmeter.CountStatistics();
+            var statistics = gasmeter.GetStatisticsWithForeEach2();
 
-            Assert.AreEqual(15, statistics.Average);
+            Assert.AreEqual(Math.Round(21.667, 3), Math.Round(statistics.Average, 3));
         }
     }
+}

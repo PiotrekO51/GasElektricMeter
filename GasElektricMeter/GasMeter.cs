@@ -8,6 +8,7 @@
 
         private const string fileName2 = "gas.Text";
 
+        private List<float> grades2 = new List<float>();
 
         public GasMeter(string name, string surname)
                 : base(name, surname)
@@ -15,11 +16,17 @@
 
         }
 
-
-        public override void AddGrade(float grade)
+            public override void AddGrade(float grade)
         {
-            float gradeAsFloat = grade;
-            this.AddGrade(gradeAsFloat);
+            if (grade >= 0 )
+            {
+                this.grades2.Add(grade);
+
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
+            }
         }
 
         public override void AddGrade(int grade)
@@ -73,7 +80,7 @@
             var result = this.CountStatistics(gradesFromFile);
             return result;
         }
-        private List<float> ReadGradesFromFile()
+        public List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
             if (File.Exists(fileName2))
@@ -100,8 +107,8 @@
             }
             return grades;
         }
-
-        private Statistics CountStatistics(List<float> grades)
+       
+        public Statistics CountStatistics(List<float>grades)
         {
             var statistics = new Statistics();
             var grades1 = new List<float>();
@@ -110,7 +117,34 @@
             foreach (var grade in grades)
 
             {
-                grades1 = grades;
+                grades1 = grades2;
+                counter2++;
+            }
+
+            for (var i = counter2 - 1; i >= 1; i--)
+            {
+                statistics.AddGrade(grades1[i] - grades1[i - 1]);
+            }
+            return statistics;
+        }
+
+        public override Statistics GetStatisticsWithForeEach2()
+        {
+            
+            var result = this.CountStatistics();
+            return result;
+        }
+        
+        public override Statistics CountStatistics()
+        {
+            var statistics = new Statistics();
+            var grades1 = new List<float>();
+            int counter2 = 0;
+
+            foreach (var grade in grades2)
+
+            {
+                grades1 = grades2;
                 counter2++;
             }
 

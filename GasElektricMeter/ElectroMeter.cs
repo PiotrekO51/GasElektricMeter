@@ -61,15 +61,15 @@
                 }
             }
         }
-
-
+       
+        
         public override Statistics GetStatisticsWithForeEach()
         {
             var gradesFromFile = this.ReadGradesFromFile();
             var result = this.CountStatistics(gradesFromFile);
             return result;
         }
-        private List<float> ReadGradesFromFile()
+        public List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
             if (File.Exists(fileName))
@@ -97,7 +97,13 @@
             return grades;
         }
 
-        private Statistics CountStatistics(List<float> grades)
+        public override Statistics CountStatistics()
+        {
+            var statistics = new Statistics();
+            return statistics;
+        }
+
+        public  Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
             var grades1 = new List<float>();
@@ -114,6 +120,11 @@
             {
                 statistics.AddGrade(grades1[i] - grades1[i - 1]);
             }
+            return statistics;
+        }
+        public override Statistics GetStatisticsWithForeEach2()
+        {
+            var statistics = new Statistics();
             return statistics;
         }
     }

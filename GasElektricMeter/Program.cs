@@ -1,16 +1,19 @@
 ﻿using GasElektricMeter;
 
+var electrometer = new ElectroMeter("Licznik", "Prąd");
+var gasmeter = new GasMeter("Licznik", "Gaz");
+
+
+electrometer.GradeAdded += MeterGradeAdded;
+gasmeter.GradeAdded += MeterGradeAdded;
+
+
 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
 Console.WriteLine("║   Witam w programie licznika kosztów prądu i gazu      ║");
 Console.WriteLine("║ Licznik rejestruje dzienne wprowadzone wskazania oraz  ║");
 Console.WriteLine("║   podaje statystyki i aktuakny koszt zużycia prądu     ║");
 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
-var electrometer = new ElectroMeter("Licznik", "Prąd");
-var gasmeter = new GasMeter("Licznik", "Gaz");
-
-electrometer.GradeAdded += MeterGradeAdded;
-gasmeter.GradeAdded += MeterGradeAdded;
 
 Console.WriteLine("╔═════════════════════════════════════════════════════╗");
 Console.WriteLine("║   Podaj licznik który chcesz uzupełnić/sprawdzić    ║");

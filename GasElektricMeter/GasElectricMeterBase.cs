@@ -31,5 +31,8 @@ namespace GasElektricMeter
         public abstract void AddGrade(char grade);
 
         public abstract Statistics GetStatisticsWithForeEach();
+        public abstract Statistics GetStatisticsWithForeEach2();
+
+        public abstract Statistics CountStatistics();
     }
 }
