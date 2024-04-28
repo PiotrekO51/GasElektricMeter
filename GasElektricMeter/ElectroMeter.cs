@@ -46,7 +46,7 @@
             {
                 float.TryParse(grade, out number);
 
-                if (number >= 0)
+                if (number >= 1)
                 {
                     writer.WriteLine(number);
 
@@ -57,7 +57,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Zła wartość");
+                    throw new Exception("zła wartość");
                 }
             }
         }

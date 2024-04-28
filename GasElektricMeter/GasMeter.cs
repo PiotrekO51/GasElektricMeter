@@ -16,9 +16,9 @@
 
         }
 
-            public override void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
-            if (grade >= 0 )
+            if (grade >= 1)
             {
                 this.grades2.Add(grade);
 
@@ -28,6 +28,7 @@
                 }
             }
         }
+        
 
         public override void AddGrade(int grade)
         {
@@ -54,25 +55,23 @@
             using (var writer = File.AppendText(fileName2))
             {
                 float.TryParse(grade, out number);
-                if (number >= 0)
+
+                if (number >= 1)
                 {
                     writer.WriteLine(number);
 
                     if (GradeAdded != null)
                     {
                         GradeAdded(this, new EventArgs());
-
                     }
-
                 }
                 else
                 {
-                    Console.WriteLine("Zła wartość");
+                    throw new Exception("zła wartość");
                 }
-
             }
+  
         }
-
 
         public override Statistics GetStatisticsWithForeEach()
         {
@@ -117,7 +116,7 @@
             foreach (var grade in grades)
 
             {
-                grades1 = grades2;
+                grades1 = grades;
                 counter2++;
             }
 
