@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/GasElektricMeter/GasElectricMeterBase.cs
+/GasElektricMeter/ElectroMeter.cs
+/GasElektricMeter/GasMeter.cs
+/GasElektricMeter.Test/UnitTest1.cs
