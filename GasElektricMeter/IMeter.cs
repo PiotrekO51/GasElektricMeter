@@ -1,4 +1,4 @@
-﻿using static GasElektricMeter.GasElectricMeterBase;
+﻿using static GasElektricMeter.GasEnergyMeterBase;
 
 namespace GasElektricMeter
 {
@@ -8,21 +8,20 @@ namespace GasElektricMeter
 
         string Surname { get; }
 
+        void AddPrice(float grade);
+
+        void AddPrice(string grade);
+
         void AddGrade(float grade);
 
-        void AddGrade(int grade);
-
-        void AddGrade(double grade);
-
         void AddGrade(string grade);
-
-        void AddGrade(char grade);
+        
 
         event GradeAddedDelegdate GradeAdded;
-
+        //event GradeAddedDelegdate PriceAdded;
 
         Statistics GetStatisticsWithForeEach();
-
-        
+ 
     }
+       
 }

@@ -1,12 +1,13 @@
 ﻿using GasElektricMeter;
 
-var electrometer = new ElectroMeter("Licznik", "Prąd");
-var gasmeter = new GasMeter("Licznik", "Gaz");
+var electrometer = new EnergyInFile("prąd", "kWh");
+var gasmeter = new GasInMemory("gaz ", "m3 ");
 
 
 electrometer.GradeAdded += MeterGradeAdded;
 gasmeter.GradeAdded += MeterGradeAdded;
-
+gasmeter.PriceAdded += PriceAdded;
+electrometer.PriceAdded += PriceAdded;
 
 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
 Console.WriteLine("║   Witam w programie licznika kosztów prądu i gazu      ║");
@@ -15,37 +16,58 @@ Console.WriteLine("║   podaje statystyki i aktuakny koszt zużycia prądu     
 Console.WriteLine("║      NALEŻY PODAĆ CO NAJMNIEJ DWA ODCZYTY !!!!!        ║");
 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
-
 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
 Console.WriteLine("║     Podaj licznik który chcesz uzupełnić/sprawdzić     ║");
 Console.WriteLine("║       Licznik prądu E lub e licznik gazu G lub g       ║");
+Console.WriteLine("║                     lub zakończ   X                    ║");
 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 var input = Console.ReadLine();
 
+if (input == "G" || input == "g")
+{
+    Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+    Console.WriteLine("║                Podaj aktualną cenę                     ║");
+    Console.WriteLine("║         gazu z - , - jako znak rozdzielajacy           ║");
+    Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
+    var price1 = Console.ReadLine();
+    if (price1 != null)
+    {
+        gasmeter.AddPrice(price1);
+    }
+}
+if (input == "E" || input == "e")
+{
+    Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+    Console.WriteLine("║                 Podajaktualną cenę                     ║");
+    Console.WriteLine("║         prądu z - , - jako znak rozdzielajacy          ║");
+    Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
-Console.WriteLine("╔════════════════════════════════════════════════════════╗");
-Console.WriteLine("║                   Podaj aktualny koszt                 ║");
-Console.WriteLine("║             jednej kWh prądu lub jednego m3 gazu       ║");
-Console.WriteLine("╚════════════════════════════════════════════════════════╝");
-
-string tarifE = Console.ReadLine();
-float price1 = float.Parse(tarifE);
-
-
+    var price1 = Console.ReadLine();
+    if (price1 != null)
+    {
+        electrometer.AddPrice(price1);
+    }
+}
 void MeterGradeAdded(object sender, EventArgs arg)
 {
-Console.WriteLine("Dodano wartość z licznika");
+    Console.WriteLine($"Dodano wartość z licznika {sender}  ");
 }
+
+void PriceAdded(object sender, EventArgs arg)
+{
+    Console.WriteLine($"Dodano nową cenę {sender}");
+}
+
 
 while (input == "E" || input == "e")
 {
- Console.WriteLine("╔═══════════════════════════════════════════════════════════════╗");
- Console.WriteLine("║ Podaj kolejną wartość z liczika Prądu lub zakończ wpisując Q  ║");
- Console.WriteLine("╚═══════════════════════════════════════════════════════════════╝");
+    Console.WriteLine("╔═══════════════════════════════════════════════════════════════╗");
+    Console.WriteLine("║ Podaj kolejną wartość z liczika Prądu lub zakończ wpisując Q  ║");
+    Console.WriteLine("╚═══════════════════════════════════════════════════════════════╝");
 
     var input2 = Console.ReadLine();
-    if (input2 == "q" ||input2 == "Q")
+    if (input2 == "q" || input2 == "Q")
     {
         break;
     }
@@ -54,7 +76,7 @@ while (input == "E" || input == "e")
     {
         if (input2 != null)
         {
-            
+
             electrometer.AddGrade(input2);
         }
     }
@@ -63,16 +85,15 @@ while (input == "E" || input == "e")
     {
         Console.WriteLine($"Znaleziono wyjątek :  {e.Message}");
     }
-
-
 }
 
 
 while (input == "G" || input == "g")
 {
-Console.WriteLine("╔════════════════════════════════════════════════════════════════════════╗");
-Console.WriteLine("║ Podaj kolejną wartość  wartość z liczika lub gazu zakończ wpisując Q   ║");
-Console.WriteLine("╚════════════════════════════════════════════════════════════════════════╝");
+
+    Console.WriteLine("╔════════════════════════════════════════════════════════════════════════╗");
+    Console.WriteLine("║ Podaj kolejną wartość  wartość z liczika lub gazu zakończ wpisując Q   ║");
+    Console.WriteLine("╚════════════════════════════════════════════════════════════════════════╝");
 
     var input2 = Console.ReadLine();
 
@@ -85,7 +106,7 @@ Console.WriteLine("╚═══════════════════�
     {
         if (input2 != null)
         {
-            
+
             gasmeter.AddGrade(input2);
         }
     }
@@ -96,35 +117,14 @@ Console.WriteLine("╚═══════════════════�
     }
 }
 
-if (input == "E" || input == "e")
-{
-
-    var statistics = electrometer.GetStatisticsWithForeEach();
-    var sta = statistics.Sum * price1 * 1.23;
-    Console.WriteLine("╔════════════════════════════════════════════════════╗");
-    Console.WriteLine("║ Wyniki ststystyczne licznika energi elektrycznej   ║");
-    Console.WriteLine("╚════════════════════════════════════════════════════╝");
-    Console.WriteLine($"║ Suma zużycia prądu            kWh ║{statistics.Sum}     ");
-    Console.WriteLine($"║ Maksymalne dzinne zużycie     kWh ║{statistics.Max}     ");
-    Console.WriteLine($"║ Średnia zużycie               kWh ║{statistics.Average:N2}  ");
-    Console.WriteLine($"║ Minimalne zużycie             kWh ║{statistics.Min}     ");
-    Console.WriteLine($"║ Ilość dni pracy               dni ║{statistics.Count}    ");
-    Console.WriteLine($"║ Koszt całkowity zł brutto VAt 23% ║{sta:N2}");
-    Console.WriteLine("╚════════════════════════════════════════════════════╝");
-}
 if (input == "G" || input == "g")
 {
-
-    var statistics = gasmeter.GetStatisticsWithForeEach();
-    var sta = statistics.Sum * price1 * 1.23;
-    Console.WriteLine("╔════════════════════════════════════════════════════╗");
-    Console.WriteLine("║ Wyniki ststystyczne licznika gazu                  ║");
-    Console.WriteLine("╚════════════════════════════════════════════════════╝");
-    Console.WriteLine($"║ Suma zużycia gazu             m3  ║{statistics.Sum}     ");
-    Console.WriteLine($"║ Maksymalne dzinne zużycie     m3  ║{statistics.Max}     ");
-    Console.WriteLine($"║ Średnia zużycie               m3  ║{statistics.Average:N2}  ");
-    Console.WriteLine($"║ Minimalne zużycie             m3  ║{statistics.Min}     ");
-    Console.WriteLine($"║ Ilość dni pracy               dni ║{statistics.Count}     ");
-    Console.WriteLine($"║ Koszt całkowity zł brutto VAt 23% ║{sta:N2}");
-    Console.WriteLine("╚════════════════════════════════════════════════════╝");
+    gasmeter.ShowStatistics();
 }
+else if (input == "E" || input == "e")
+{
+
+    electrometer.ShowStatistics();
+}
+
+
