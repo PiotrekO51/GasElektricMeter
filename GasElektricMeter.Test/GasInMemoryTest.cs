@@ -1,6 +1,6 @@
 ﻿namespace GasElektricMeter.Test
 { 
-public class GasInMemoryTest
+    public class GasInMemoryTest
     {
         [Test]
         public void StatisticTest()

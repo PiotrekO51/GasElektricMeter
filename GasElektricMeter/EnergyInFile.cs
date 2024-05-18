@@ -8,9 +8,9 @@
         public event GradeAddedDelegdate PriceAdded;
 
         private const string fileName = "Energy.txt";
-
+     
         private List<float> price = new List<float>();
-
+       
         public EnergyInFile(string name, string surname)
             : base(name, surname)
         {
@@ -36,13 +36,6 @@
             this.AddPrice(number);
         }
 
-
-        public override void AddGrade(float grade)
-        {
-            float gradeAsFloat = grade;
-            this.AddGrade(gradeAsFloat);
-        }
-
         public override void AddGrade(string grade)
         {
             float number;
@@ -50,7 +43,7 @@
             {
                 float.TryParse(grade, out number);
 
-                if (number >= 1)
+                if (number > 0 )
                 {
                     writer.WriteLine(number);
 
@@ -66,6 +59,29 @@
             }
         }
 
+        public override void AddGrade(float grade)
+        {
+            //float gradeAsFloat = grade;
+            //this.AddGrade(gradeAsFloat);
+           
+            using (var writer = File.AppendText(fileName))
+            {
+               
+                if (grade > 0)
+                {
+                    writer.WriteLine(grade);
+
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this.Name, new EventArgs());
+                    }
+                }
+                else
+                {
+                    throw new Exception("zła wartość");
+                }
+            }
+        }
 
         public override Statistics GetStatisticsWithForeEach()
         {
