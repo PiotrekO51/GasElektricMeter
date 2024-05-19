@@ -15,13 +15,14 @@ namespace GasElektricMeter
         void AddGrade(float grade);
 
         void AddGrade(string grade);
-        
+        //void GradeAdded(float grade);
+        //void PriceAdded(float grade);
 
         event GradeAddedDelegdate GradeAdded;
-        //event GradeAddedDelegdate PriceAdded;
+        event GradeAddedDelegdate PriceAdded;
 
         Statistics GetStatisticsWithForeEach();
- 
+        void ShowStatistics();
     }
        
 }

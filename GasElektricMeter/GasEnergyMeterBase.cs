@@ -8,8 +8,8 @@ namespace GasElektricMeter
 
         public event GradeAddedDelegdate GradeAdded;
 
+        public event GradeAddedDelegdate PriceAdded;
 
-       
         public GasEnergyMeterBase(string name, string surname)
 
         {
@@ -28,8 +28,6 @@ namespace GasElektricMeter
         public abstract void AddGrade(float grade);
 
         public abstract void AddGrade(string grade);
-
-
         
         public abstract Statistics GetStatisticsWithForeEach();
 
@@ -49,7 +47,7 @@ namespace GasElektricMeter
                 Console.WriteLine($"║ Aktualne ststystyki licznik {Name}       ");
                 Console.WriteLine($"║ Suma zużycia licznik           {Surname} ║{statistics.Sum}     ");
                 Console.WriteLine($"║ Maksymalne dzinne zużycie      {Surname} ║{statistics.Max}     ");
-                Console.WriteLine($"║ Średnia zużycie                {Surname} ║{statistics.Average}  ");
+                Console.WriteLine($"║ Średnia zużycie                {Surname} ║{statistics.Average :N2}  ");
                 Console.WriteLine($"║ Minimalne zużycie              {Surname} ║{statistics.Min}     ");
                 Console.WriteLine($"║ Ilość dni pracy                {Surname} ║{statistics.Count}    ");
                 Console.WriteLine($"║ Aktualna cena                  zł  ║{price}    ");

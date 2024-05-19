@@ -16,7 +16,6 @@
             }
         }
 
-
         public Statistics()
         {
             this.Cost = 0;

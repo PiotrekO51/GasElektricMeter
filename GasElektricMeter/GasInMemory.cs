@@ -19,7 +19,6 @@ namespace GasElektricMeter
 
         }
 
-       
         public override void AddPrice(float grade)
         {
             if (grade > 0)
@@ -58,7 +57,6 @@ namespace GasElektricMeter
             this.AddGrade(number);
         }
 
-
         public override Statistics GetStatisticsWithForeEach()
         {
             var statistics = new Statistics();
@@ -81,7 +79,6 @@ namespace GasElektricMeter
        
         }
         
-
         public override Statistics GetPrice()
         {
             var statistics = new Statistics();
@@ -99,10 +96,9 @@ namespace GasElektricMeter
 
             return statistics;
         }
-        public void ShowStatistics2()
+        public void ShowStatistics()
         {
 
-        }
-        
+        }  
     }
 }

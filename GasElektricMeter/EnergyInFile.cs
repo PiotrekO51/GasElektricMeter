@@ -111,8 +111,6 @@
             return grades;
         }
 
-      
-
         public   Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
@@ -144,7 +142,7 @@
 
             return statistics;
         }
-        public void ShowStatistics2()
+        public void ShowStatistics()
         {
             
         }
