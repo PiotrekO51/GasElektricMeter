@@ -23,9 +23,9 @@
             {
                 this.price.Add(grade);
 
-                if (PriceAdded != null)
+                if (grade > 0)
                 {
-                    PriceAdded(this.Name, new EventArgs());
+                    MeterPriceAdded();
                 }
             }
         }
@@ -47,9 +47,9 @@
                 {
                     writer.WriteLine(number);
 
-                    if (GradeAdded != null)
+                    if (grade != null)
                     {
-                        GradeAdded(this.Name, new EventArgs());
+                        MeterGradeAdded();
                     }
                 }
                 else

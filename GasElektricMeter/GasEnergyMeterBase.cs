@@ -56,5 +56,19 @@ namespace GasElektricMeter
             }
             else { Console.WriteLine(" Statystyki są puste "); }
         }
+        public void MeterGradeAdded()
+        {
+            if (GradeAdded != null)
+            {
+                GradeAdded(this.Name, new EventArgs());
+            }
+        }
+        public void MeterPriceAdded()
+        {
+            if (PriceAdded != null)
+            {
+                PriceAdded(this.Name, new EventArgs());
+            }
+        }
     }    
 }

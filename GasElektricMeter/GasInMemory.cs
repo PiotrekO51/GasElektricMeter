@@ -25,9 +25,9 @@ namespace GasElektricMeter
             {
                 this.price.Add(grade);
 
-                if (PriceAdded != null)
+                if (grade >0)
                 {
-                    PriceAdded(this.Name, new EventArgs());
+                    MeterPriceAdded();
                 }
             }
         }
@@ -41,12 +41,14 @@ namespace GasElektricMeter
         {
             if (grade >= 0)
             {
-                this.grades.Add(grade);
+                
+                    this.grades.Add(grade);
 
-                if (GradeAdded != null)
-                {
-                    GradeAdded(this.Name, new EventArgs());
-                }
+                    if (grade != null)
+                    {
+                        MeterGradeAdded();
+                    }
+                
             }
         }
 

@@ -52,32 +52,34 @@ namespace GasElektricMeter
         }
         static void MeterGradeAdded(object sender, EventArgs arg)
         {
-            Console.WriteLine($"Dodano wartość z licznika {sender}  ");
+            Console.WriteLine($"Dodano wartość z licznika {sender}u  ");
         }
 
-        static void PriceAdded(object sender, EventArgs arg)
+        static void MeterPriceAdded(object sender, EventArgs arg)
         {
-            Console.WriteLine($"Dodano nową cenę {sender}");
+            Console.WriteLine($"Dodano nową cenę {sender}u");
         }
 
         private static void AddGradesToEmployee(bool InMemory)
         {
             if (true)
             {               
-                IMeter meter = InMemory ? new GasInMemory("gaz ", "m3 ") : new EnergyInFile("prąd", "kWh");
+                IMeter meter = InMemory ? new GasInMemory(" gaz", "m3 ") : new EnergyInFile("prąd", "kWh");
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
                 Console.WriteLine("║                Podaj aktualną cenę                     ║");
-                Console.WriteLine($"║         {meter.Name} z - , - jako znak rozdzielajacy           ║");
+                Console.WriteLine($"║        {meter.Name}u z - , - jako znak rozdzielajacy           ║");
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
                 
                 var price1 = Console.ReadLine();
+                meter.PriceAdded += MeterPriceAdded;
                 if (price1 != null)
                 {
                     meter.AddPrice(price1);
                 }
-                meter.PriceAdded += MeterGradeAdded;
-                EnterGrade(meter);
+                //meter.PriceAdded += MeterPriceAdded;
                 meter.GradeAdded += MeterGradeAdded;
+                EnterGrade(meter);
+               
                 meter.ShowStatistics();
             }
 
@@ -87,8 +89,8 @@ namespace GasElektricMeter
         {
             while (true)
             {
-                meter.GradeAdded += MeterGradeAdded;
-                Console.WriteLine($" podaj wartość licznika {meter.Name}lub wciśnij 'q'. ");
+                
+                Console.WriteLine($"\nPodaj wartość licznika {meter.Name}lub wciśnij 'q'. ");
                 var input = Console.ReadLine();
 
                 if (input == "q" || input == "Q")
@@ -98,7 +100,7 @@ namespace GasElektricMeter
                 try
                 {
                     meter.AddGrade(input);
-
+                    
                 }
 
                 catch (Exception e)
