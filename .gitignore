@@ -365,3 +365,6 @@ FodyWeavers.xsd
 /GasElektricMeter/ElectroMeter.cs
 /GasElektricMeter/GasMeter.cs
 /GasElektricMeter.Test/UnitTest1.cs
+/GasElektricMeter/EnergyInFile.cs
+/GasElektricMeter/GasInMemory.cs
+/GasElektricMeter/GasEnergyMeterBase.cs
