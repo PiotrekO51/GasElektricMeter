@@ -29,12 +29,12 @@ namespace GasElektricMeter
                 {
                     case "G":
                     case "g":
-                        AddGradesToEmployee(true);
+                        AddGradesToDataStatistics(true);
                         break;
 
                     case "E":
                     case "e":
-                        AddGradesToEmployee(false);
+                        AddGradesToDataStatistics(false);
                         break;
 
                     case "X":
@@ -60,11 +60,11 @@ namespace GasElektricMeter
             Console.WriteLine($"Dodano nową cenę {sender}u");
         }
 
-        private static void AddGradesToEmployee(bool InMemory)
+        private static void AddGradesToDataStatistics(bool InMemory)
         {
             if (true)
             {               
-                IMeter meter = InMemory ? new GasInMemory(" gaz", "m3 ") : new EnergyInFile("prąd", "kWh");
+                IMeter meter = InMemory ? new DataInMemory(" gaz", "m3 ") : new DataInFile("prąd", "kWh");
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
                 Console.WriteLine("║                Podaj aktualną cenę                     ║");
                 Console.WriteLine($"║        {meter.Name}u z - , - jako znak rozdzielajacy           ║");
@@ -76,7 +76,7 @@ namespace GasElektricMeter
                 {
                     meter.AddPrice(price1);
                 }
-                //meter.PriceAdded += MeterPriceAdded;
+               
                 meter.GradeAdded += MeterGradeAdded;
                 EnterGrade(meter);
                

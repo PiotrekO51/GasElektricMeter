@@ -10,7 +10,7 @@ namespace GasElektricMeter.Test
                 File.Delete("Energy.txt");
             }
 
-            var electrometer = new EnergyInFile("pr퉐", "kWh");
+            var electrometer = new DataInFile("pr퉐", "kWh");
             electrometer.AddGrade("35");
             electrometer.AddGrade("50");
             electrometer.AddGrade("70");
@@ -30,7 +30,7 @@ namespace GasElektricMeter.Test
             {
                 File.Delete("Energy.txt");
             }
-            var electrometer = new EnergyInFile("pr퉐", "kWh");
+            var electrometer = new DataInFile("pr퉐", "kWh");
             electrometer.AddGrade(35);
             electrometer.AddGrade(50);
             electrometer.AddGrade(70);
@@ -49,7 +49,7 @@ namespace GasElektricMeter.Test
             {
                 File.Delete("Energy.txt");
             }
-            var electrometer = new EnergyInFile("pr퉐", "kWh");
+            var electrometer = new DataInFile("pr퉐", "kWh");
             electrometer.AddGrade(35);
             electrometer.AddGrade(50);
             electrometer.AddGrade(70);
