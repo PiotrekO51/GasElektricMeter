@@ -1,4 +1,5 @@
 ﻿using GasElektricMeter;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GasElektricMeter
 {
@@ -17,8 +18,8 @@ namespace GasElektricMeter
             {
 
                 Console.WriteLine("╔════════════════════════════════════════════════════════╗");
-                Console.WriteLine("║     Podaj licznik który chcesz uzupełnić/sprawdzić     ║");
-                Console.WriteLine("║       Licznik prądu E lub e licznik gazu G lub g       ║");
+                Console.WriteLine("║            Podaj Sposób obliczania statystyk           ║");
+                Console.WriteLine("║            Sposób na listach   L   do pliku F          ║");
                 Console.WriteLine("║                     lub zakończ   X                    ║");
                 Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
@@ -27,13 +28,13 @@ namespace GasElektricMeter
 
                 switch (userInput)
                 {
-                    case "G":
-                    case "g":
+                    case "L":
+                    case "l":
                         AddGradesToDataStatistics(true);
                         break;
 
-                    case "E":
-                    case "e":
+                    case "F":
+                    case "f":
                         AddGradesToDataStatistics(false);
                         break;
 
@@ -63,24 +64,33 @@ namespace GasElektricMeter
         private static void AddGradesToDataStatistics(bool InMemory)
         {
             if (true)
-            {               
-                IMeter meter = InMemory ? new DataInMemory(" gaz", "m3 ") : new DataInFile("prąd", "kWh");
-                Console.WriteLine("╔════════════════════════════════════════════════════════╗");
-                Console.WriteLine("║                Podaj aktualną cenę                     ║");
-                Console.WriteLine($"║        {meter.Name}u z - , - jako znak rozdzielajacy           ║");
-                Console.WriteLine("╚════════════════════════════════════════════════════════╝");
-                
-                var price1 = Console.ReadLine();
-                meter.PriceAdded += MeterPriceAdded;
-                if (price1 != null)
+            {
+                string firstName = GetDataFromUser("Podaj Rodzaj Licznika (Gaz  czy Prd) ");
+                string lastName = GetDataFromUser(" Podaj jednostkę mocy  kWh   czy  m3");
+                if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
                 {
-                    meter.AddPrice(price1);
+                    IMeter meter = InMemory ? new DataInMemory(firstName, lastName) : new DataInFile(firstName, lastName);
+                    Console.WriteLine("╔════════════════════════════════════════════════════════╗");
+                    Console.WriteLine("║                Podaj aktualną cenę                     ║");
+                    Console.WriteLine($"║        {meter.Name}u z - , - jako znak rozdzielajacy           ║");
+                    Console.WriteLine("╚════════════════════════════════════════════════════════╝");
+
+                    var price1 = Console.ReadLine();
+                    meter.PriceAdded += MeterPriceAdded;
+                    if (price1 != null)
+                    {
+                        meter.AddPrice(price1);
+                    }
+
+                    meter.GradeAdded += MeterGradeAdded;
+                    EnterGrade(meter);
+
+                    meter.ShowStatistics();
                 }
-               
-                meter.GradeAdded += MeterGradeAdded;
-                EnterGrade(meter);
-               
-                meter.ShowStatistics();
+                else
+                {
+                    Console.WriteLine("Nazwy rodzaju i mocy licznika nie mogą być puste");
+                }
             }
 
         }
@@ -89,7 +99,7 @@ namespace GasElektricMeter
         {
             while (true)
             {
-                
+
                 Console.WriteLine($"\nPodaj wartość licznika {meter.Name}lub wciśnij 'q'. ");
                 var input = Console.ReadLine();
 
@@ -100,7 +110,7 @@ namespace GasElektricMeter
                 try
                 {
                     meter.AddGrade(input);
-                    
+
                 }
 
                 catch (Exception e)
@@ -108,6 +118,12 @@ namespace GasElektricMeter
                     Console.WriteLine($"Znaleziono wyjątek :  {e.Message}");
                 }
             }
+        }
+        private static string GetDataFromUser(string text)
+        {
+            Console.WriteLine(text);
+            string userInput = Console.ReadLine();
+            return userInput;
         }
     }
 }
