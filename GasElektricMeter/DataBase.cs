@@ -10,17 +10,20 @@ namespace GasElektricMeter
 
         public event GradeAddedDelegdate PriceAdded;
 
-        public DataBase(string name, string surname)
+        public DataBase(string name, string surname, string numer )
 
         {
             Name = name;
             Surname = surname;
+            Numer = numer;
         }
 
         public string Name { get; private set; }
 
         public string Surname { get; private set; }
- 
+
+        public string Numer { get; private set; }
+
         public abstract void AddPrice(float grade);
 
         public abstract void AddPrice(string grade);
@@ -41,9 +44,9 @@ namespace GasElektricMeter
 
             if (statistics.Count != 0)
             {
-                Console.WriteLine("╔════════════════════════════════════════════════════╗");
-                Console.WriteLine("║ Wyniki ststystyczne licznika                       ║");
-                Console.WriteLine("╚════════════════════════════════════════════════════╝");
+                Console.WriteLine("╔════════════════════════════════════════════════════");
+                Console.WriteLine($"║ Wyniki ststystyczne licznika {Name}u numer {Numer}  ");
+                Console.WriteLine("╚════════════════════════════════════════════════════");
                 Console.WriteLine($"║ Aktualne ststystyki licznik {Name}       ");
                 Console.WriteLine($"║ Suma zużycia licznik           {Surname} ║{statistics.Sum}     ");
                 Console.WriteLine($"║ Maksymalne dzinne zużycie      {Surname} ║{statistics.Max}     ");

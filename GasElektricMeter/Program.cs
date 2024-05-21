@@ -1,10 +1,12 @@
 ﻿using GasElektricMeter;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace GasElektricMeter
 {
     internal class Program
     {
+       
         private static void Main()
         {
             Console.WriteLine("╔════════════════════════════════════════════════════════╗");
@@ -60,19 +62,31 @@ namespace GasElektricMeter
         {
             Console.WriteLine($"Dodano nową cenę {sender}u");
         }
-
+       
         private static void AddGradesToDataStatistics(bool InMemory)
         {
+            string text = null;
             if (true)
             {
-                string firstName = GetDataFromUser("Podaj Rodzaj Licznika (Gaz  czy Prd) ");
-                string lastName = GetDataFromUser(" Podaj jednostkę mocy  kWh   czy  m3");
+                string firstName = GetDataFromUser("Podaj Rodzaj Licznika (Gaz  czy Prąd) ");
+
+                if (firstName == "Gaz" || firstName == "gaz")
+                {
+                    text = "m3 ";
+                }
+                else if (firstName == "Prąd" || firstName == "prąd")
+                {
+                     text = "kWh";
+                }
+                
+                string lastName = text;
+                string numer = GetDataFromUser(" Podaj numer licznika");
                 if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
                 {
-                    IMeter meter = InMemory ? new DataInMemory(firstName, lastName) : new DataInFile(firstName, lastName);
+                    IMeter meter = InMemory ? new DataInMemory(firstName, lastName, numer) : new DataInFile(firstName, lastName, numer);
                     Console.WriteLine("╔════════════════════════════════════════════════════════╗");
                     Console.WriteLine("║                Podaj aktualną cenę                     ║");
-                    Console.WriteLine($"║        {meter.Name}u z - , - jako znak rozdzielajacy           ║");
+                    Console.WriteLine($"║        {meter.Name}u  - , - jako znak rozdzielajacy             ║");
                     Console.WriteLine("╚════════════════════════════════════════════════════════╝");
 
                     var price1 = Console.ReadLine();
@@ -119,6 +133,8 @@ namespace GasElektricMeter
                 }
             }
         }
+       
+
         private static string GetDataFromUser(string text)
         {
             Console.WriteLine(text);

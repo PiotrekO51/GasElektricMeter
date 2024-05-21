@@ -13,8 +13,8 @@ namespace GasElektricMeter
         private List<float> grades = new List<float>();
         private List<float> price = new List<float>();
 
-        public DataInMemory(string name, string surname)
-                : base(name, surname)
+        public DataInMemory(string name, string surname, string numer)
+                : base(name, surname, numer)
         {
 
         }

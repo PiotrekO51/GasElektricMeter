@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace GasElektricMeter.Test
 {
     public class EnergyInFileTest
@@ -5,12 +7,12 @@ namespace GasElektricMeter.Test
         [Test]
         public void StatisticTest()
         {
-            if (File.Exists("Energy.txt"))
-            {
-                File.Delete("Energy.txt");
+            if (File.Exists("Gaz_123.txt")) 
+            { 
+                File.Delete("Gaz_123.txt");
             }
 
-            var electrometer = new DataInFile("pr¹d", "kWh");
+            var electrometer = new DataInFile("Gaz", "kWh", "123");
             electrometer.AddGrade("35");
             electrometer.AddGrade("50");
             electrometer.AddGrade("70");
@@ -26,11 +28,11 @@ namespace GasElektricMeter.Test
         [Test]
         public void StatisticTest2()
         {
-            if (File.Exists("Energy.txt"))
+            if (File.Exists("Gaz_123.txt")) 
             {
-                File.Delete("Energy.txt");
+                File.Delete("Gaz_123.txt");
             }
-            var electrometer = new DataInFile("pr¹d", "kWh");
+            var electrometer = new DataInFile("Gaz", "kWh", "123");
             electrometer.AddGrade(35);
             electrometer.AddGrade(50);
             electrometer.AddGrade(70);
@@ -45,11 +47,11 @@ namespace GasElektricMeter.Test
         [Test]
         public void StatisticTest3()
         {
-            if (File.Exists("Energy.txt"))
+            if (File.Exists("Gaz_123.txt"))
             {
-                File.Delete("Energy.txt");
+                File.Delete("Gaz_123.txt");
             }
-            var electrometer = new DataInFile("pr¹d", "kWh");
+            var electrometer = new DataInFile("Gaz", "kWh", "123");
             electrometer.AddGrade(35);
             electrometer.AddGrade(50);
             electrometer.AddGrade(70);

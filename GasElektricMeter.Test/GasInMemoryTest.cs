@@ -7,7 +7,7 @@
         {
             
 
-            var energy = new DataInMemory("gas ", "m3 ");
+            var energy = new DataInMemory("Gaz ", "m3 ", "123");
             energy.AddGrade(35);
             energy.AddGrade(50);
             energy.AddGrade(70);
@@ -24,7 +24,7 @@
         public void StatisticTest2()
         {
             
-            var energy = new DataInMemory("gas ", "m3 ");
+            var energy = new DataInMemory("Gaz ", "m3 ", "123");
             energy.AddGrade(35);
             energy.AddGrade(50);
             energy.AddGrade(70);
@@ -40,7 +40,7 @@
         public void StatisticTest3()
         {
            
-            var energy = new DataInMemory("gas ", "m3 ");
+            var energy = new DataInMemory("Gaz ", "m3 ", "123");
             energy.AddGrade(35);
             energy.AddGrade(50);
             energy.AddGrade(70);

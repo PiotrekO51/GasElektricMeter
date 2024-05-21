@@ -8,6 +8,8 @@ namespace GasElektricMeter
 
         string Surname { get; }
 
+        string Numer {  get; }
+
         void AddPrice(float grade);
 
         void AddPrice(string grade);

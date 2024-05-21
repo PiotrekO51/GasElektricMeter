@@ -7,23 +7,16 @@
         public event GradeAddedDelegdate GradeAdded;
         public event GradeAddedDelegdate PriceAdded;
 
-        public void FileDelete()
-        {
-            if (File.Exists("Energy.txt"))
-            {
-                File.Delete("Energy.txt");
-            }
-        }
+        
+        private const string fileName = (".txt");
+        private string fullfileName;
 
-        private const string fileName = "Energy.txt";
-
-       
         private List<float> price = new List<float>();
 
-        public DataInFile(string name, string surname)
-            : base(name, surname)
+        public DataInFile(string name, string surname, string numer)
+            : base(name, surname, numer)
         {
-
+            fullfileName = $"{name}_{numer}{fileName}";
         }
        
         public override void AddPrice(float grade)
@@ -49,7 +42,7 @@
         {
             
             float number;
-            using (var writer = File.AppendText(fileName))
+            using (var writer = File.AppendText(fullfileName))
             {
                 float.TryParse(grade, out number);
 
@@ -74,7 +67,7 @@
             //float gradeAsFloat = grade;
             //this.AddGrade(gradeAsFloat);
 
-            using (var writer = File.AppendText(fileName))
+            using (var writer = File.AppendText(fullfileName))
             {
 
                 if (grade > 0)
@@ -102,9 +95,9 @@
         public List<float> ReadGradesFromFile()
         {
             var grades = new List<float>();
-            if (File.Exists(fileName))
+            if (File.Exists(fullfileName))
             {
-                using (var reader = File.OpenText($"{fileName}"))
+                using (var reader = File.OpenText($"{fullfileName}"))
                 {
                     var line = reader.ReadLine();
                     while (line != null)

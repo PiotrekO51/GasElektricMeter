@@ -2,12 +2,15 @@
 {
     public abstract class Person
     {
-        public Person(string nameMeter, string surnameMeter)
+        public Person(string name, string surname, string numer)
         {
-            this.Name = nameMeter;
-            this.Surname = surnameMeter;
+            this.Name = name;
+            this.Surname = surname;
+            this.Numer = numer;
         }
         public string Name { get; private set; }
         public string Surname { get; private set; }
+
+        public string Numer { get; private set; }
     }
 }
