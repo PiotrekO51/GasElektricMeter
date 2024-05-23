@@ -6,7 +6,7 @@ namespace GasElektricMeter
 {
     internal class Program
     {
-       
+
         private static void Main()
         {
             Console.WriteLine("╔════════════════════════════════════════════════════════╗");
@@ -62,28 +62,28 @@ namespace GasElektricMeter
         {
             Console.WriteLine($"Dodano nową cenę {sender}u");
         }
-       
+
         private static void AddGradesToDataStatistics(bool InMemory)
         {
             string text = null;
             if (true)
             {
-                string firstName = GetDataFromUser("Podaj Rodzaj Licznika (Gaz  czy Prąd) ");
+                string meterType = GetDataFromUser("Podaj Rodzaj Licznika (Gaz  czy Prąd) ");
 
-                if (firstName == "Gaz" || firstName == "gaz")
+                if (meterType == "Gaz" || meterType == "gaz")
                 {
                     text = "m3 ";
                 }
-                else if (firstName == "Prąd" || firstName == "prąd")
+                else if (meterType == "Prąd" || meterType == "prąd")
                 {
-                     text = "kWh";
+                    text = "kWh";
                 }
-                
-                string lastName = text;
+
+                string powerUnit = text;
                 string numer = GetDataFromUser(" Podaj numer licznika");
-                if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+                if (!string.IsNullOrEmpty(meterType) && !string.IsNullOrEmpty(powerUnit))
                 {
-                    IMeter meter = InMemory ? new DataInMemory(firstName, lastName, numer) : new DataInFile(firstName, lastName, numer);
+                    IMeter meter = InMemory ? new DataInMemory(meterType, powerUnit, numer) : new DataInFile(meterType, powerUnit, numer);
                     Console.WriteLine("╔════════════════════════════════════════════════════════╗");
                     Console.WriteLine("║                Podaj aktualną cenę                     ║");
                     Console.WriteLine($"║        {meter.Name}u  - , - jako znak rozdzielajacy             ║");
@@ -133,9 +133,9 @@ namespace GasElektricMeter
                 }
             }
         }
-       
 
-        private static string GetDataFromUser(string text)
+
+        private static string GetDataFromUser(string text )
         {
             Console.WriteLine(text);
             string userInput = Console.ReadLine();

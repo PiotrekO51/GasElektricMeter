@@ -136,8 +136,7 @@
         public override Statistics GetPrice()
         {
             var statistics = new Statistics();
-            var price1 = new List<float>();
-
+            
             if (price != null)
             {
                 statistics.AddGrade(price[0]);

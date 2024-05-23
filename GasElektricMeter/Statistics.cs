@@ -34,9 +34,9 @@
             this.Max = Math.Max(grade, this.Max);
 
         }
-        public void AddPrice(float grade)
-        {
+        //public void AddPrice(float grade)
+        //{
             
-        }
+        //}
     }
 }
